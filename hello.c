@@ -5,12 +5,18 @@
 	printf("Hello, %s\n",argv[1]);
 	return 0;
 }*/
-int sub(int a, int b);
-
-int add(int a, int b){
-	return a+b;
-}
+static int secondary=5;
 
 int sub(int a, int b){
 	return a-b;
+}
+ 
+int add(int a, int b){
+	int temp=secondary;
+	secondary+=a;
+	return a+b+temp;
+}
+
+int mul(int a, int b){
+	return a*b;
 }
