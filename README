@@ -1,0 +1,27 @@
+A simple C program that isolates and cleans a C assembly function from GCC
+assembly source by name.
+
+It takes gcc intel assembly into it's standard input and outputs the function
+named in the first argument, after cleaning up the redundant start and end
+code.
+
+It doesn't clean out the redundant code in the middle but it's still a WIP.
+
+Install binary with:
+	sudo make install
+Install and append vim binds to your .vimrc:
+	sudo make install vim-append
+Install and include vim binds to .vimrc via a .vim file in ~/.vim/
+	sudo make install vim-include
+
+The vim integration binds F6 and F7 in normal mode and F6 in visual mode.
+Normal F6:	Put your cursor on a function name and press this key to assemble it.
+Normal F7:	Assemble whole file.
+Visual F6:	Assemble local function within selection with no external-to-
+			function references.
+
+Known bugs:
+
+		If you have a string with "some_name:" aka a string which describes a
+	label, the function inclusion will start at the string if you pass it
+	"some_name" as a function name.
