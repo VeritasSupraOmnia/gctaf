@@ -15,6 +15,7 @@ vim-append:
 	printf "\n\t\"These mappings assemble C functions and files using GCC.\n" >> ~/.vimrc
 	printf "\t\"F6 does functions. Put it on the function name line to assemble it.\n" >> ~/.vimrc
 	printf "\t\"F7 does the whole file.\n" >> ~/.vimrc
+	printf "\t\"C-F6 and C-F7 assemble c++ source instead of C source.\n" >> ~/.vimrc
 	cat gctaf.vim | grep :nmap >> ~/.vimrc
 	printf "\n\t\"This visual mode mapping allows you to assemble a function that uses no non-function-local data without\n" >> ~/.vimrc
 	printf "\t\"assembling the whole file, which might speed things up greatly if the function is in a large file.\n" >> ~/.vimrc
