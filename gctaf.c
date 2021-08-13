@@ -67,8 +67,8 @@ int main(int argc, char **argv){
 	write(1,func_loc,fnsz+2),i=(func_loc+fnsz+2)-data;//+fncsz;
 
 	//find function body
-	body_loc=strchr(data+i,'\n')+1;
-	body_size=strstr(body_loc,".LFE")-body_loc;
+	body_loc=strchr(strchr(data+i,'\n')+1,'\n')+1;
+	body_size=strstr(body_loc,".cfi_endproc")-body_loc-1;
 	write(1,body_loc,body_size);
 
 	//get name mask from name size
