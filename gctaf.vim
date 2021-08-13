@@ -15,3 +15,5 @@
 "This is slow and bad and I want to improve it but don't know vim script.
 "If you know vim script and have a better way to do this, I will include it and 
 "credit you in both the source and readme
+
+"TODO: Look into directing the cmd output directly into a buffer to copy the file one less time for greater speed.
