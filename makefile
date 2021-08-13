@@ -2,6 +2,8 @@ gctaf:	gctaf.c
 	gcc -O3 gctaf.c -o gctaf
 test:	gctaf
 	gcc -xc -O3 hello.c -S -masm=intel -o /dev/stdout | ./gctaf add
+	gcc -xc -O3 hello.c -S -masm=intel -o /dev/stdout | ./gctaf sub
+	gcc -xc -O3 hello.c -S -masm=intel -o /dev/stdout | ./gctaf testextern
 install:	gctaf
 	cp ./gctaf /bin/
 uninstall:
