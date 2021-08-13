@@ -1,12 +1,14 @@
-gctaf: gctaf.c
+gctaf:	gctaf.c
 	gcc -O3 gctaf.c -o gctaf
-test: gctaf
+test:	gctaf
 	gcc -xc -O3 hello.c -S -masm=intel -o /dev/stdout | ./gctaf add
-install: gctaf
+install:	gctaf
 	cp ./gctaf /bin/
 uninstall:
 	rm /bin/gctaf
-debug: 
+assembly:
+	gcc -O3 ./gctaf.c -S -masm/intel -o gctaf.s
+debug:	assembly
 	gcc gctaf.c -Og -g -o gctaf-debug
 	dbg gctaf-debug
 vim-append:
