@@ -6,6 +6,11 @@
 	"assembles a whole C file on 03
 	:nmap <F7> gg"fyG:vnew<CR>"fPggVG:!gcc -O3 -xc - -S -masm=intel -o /dev/stdout<CR>
 
+	"assembles a single C++ function
+	:nmap <C-F6> mngg"fyG'n0t(byiw:vnew<CR>"fPggVG:!g++ -O3 -xc - -S -masm=intel -o /dev/stdout \| gctaf <C-R>"<CR>
+	"assembles a whole C++ file
+	:nmap <C-F7> gg"fyG:vnew<CR>"fPggVG:!g++ -O3 -xc - -S -masm=intel -o /dev/stdout<CR>
+
 	"Assembles a single function that's independent of global state
 	:vmap <F6> y:vnew<CR>pggVG:'<,'>!gcc -xc - -S -masm=intel -O3 -o /dev/stdout<CR>gg/:\n<CR>kdggG?.LFE<CR>dGgg/.LFB<CR>dd
 	"This is useful if you want to quickly see what a small function does in a
