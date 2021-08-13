@@ -13,6 +13,8 @@
 #define sU8(pointer) *(U8*)(pointer)
 //set Match Location
 
+//TODO: Print a warning to stdin on erroneous usage
+
 int main(int argc, char **argv){
 	//to replace my very basic vim bind with an actual program that doesn't
 	//break on extra functional dependencies. Vim will compile the whole program
@@ -35,7 +37,9 @@ int main(int argc, char **argv){
 
 	//CODE
 	//get function name into useful format
-	if (argc<2) return 1;
+	if (argc<2){
+		return 1;
+	}
 	/*
 	 * FILE READING
 	 */
@@ -68,8 +72,11 @@ int main(int argc, char **argv){
 
 	//find function body
 	body_loc=strchr(strchr(data+i,'\n')+1,'\n')+1;
-	body_size=strstr(body_loc,".cfi_endproc")-body_loc-1;
-	write(1,body_loc,body_size);
+	do{
+		body_size=strstr(body_loc,".cfi")-body_loc-1;
+		write(1,body_loc,body_size);
+		body_loc=strchr(body_loc+1,'\n')+1;
+	}while(!strcmp(body_loc+body_size,".cfi_endproc"));
 
 	//get name mask from name size
 	return 0;
