@@ -9,7 +9,7 @@ install:	gctaf
 uninstall:
 	rm /bin/gctaf
 assembly:
-	gcc -O3 ./gctaf.c -S -masm/intel -o gctaf.s
+	gcc -O3 ./gctaf.c -S -masm=intel -o gctaf.s
 debug:	assembly
 	gcc gctaf.c -Og -g -o gctaf-debug
 	dbg gctaf-debug
