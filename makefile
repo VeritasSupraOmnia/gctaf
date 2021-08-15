@@ -13,7 +13,7 @@ assembly:
 	gcc -O3 ./gctaf.c -S -masm=intel -o gctaf.s
 debug:	assembly
 	gcc gctaf.c -Og -g -o gctaf-debug
-	gdb gctaf-debug -x debug.ex
+	gdb gctaf-debug -x debug.gdb
 vim-append:
 	printf "\n\t\"These mappings assemble C functions and files using GCC.\n" >> ~/.vimrc
 	printf "\t\"F6 does functions. Put it on the function name line to assemble it.\n" >> ~/.vimrc
