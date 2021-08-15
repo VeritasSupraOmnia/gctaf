@@ -4,6 +4,7 @@ test:	gctaf
 	gcc -xc -O3 hello.c -S -masm=intel -o /dev/stdout | ./gctaf add
 	gcc -xc -O3 hello.c -S -masm=intel -o /dev/stdout | ./gctaf sub
 	gcc -xc -O3 hello.c -S -masm=intel -o /dev/stdout | ./gctaf testextern
+	gcc -xc -O3 gctaf.c -S -masm=intel -o /dev/stdout | ./gctaf main
 install:	gctaf
 	cp ./gctaf /bin/
 uninstall:
@@ -12,7 +13,7 @@ assembly:
 	gcc -O3 ./gctaf.c -S -masm=intel -o gctaf.s
 debug:	assembly
 	gcc gctaf.c -Og -g -o gctaf-debug
-	dbg gctaf-debug
+	gdb gctaf-debug -x debug.ex
 vim-append:
 	printf "\n\t\"These mappings assemble C functions and files using GCC.\n" >> ~/.vimrc
 	printf "\t\"F6 does functions. Put it on the function name line to assemble it.\n" >> ~/.vimrc
