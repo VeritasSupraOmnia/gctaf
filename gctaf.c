@@ -67,16 +67,20 @@ int main(int argc, char **argv){
 	 */
 
 	//print function label and jump past newline
-	func_loc=strstr(data,func_name);
-	write(1,func_loc,fnsz+2),i=(func_loc+fnsz+2)-data;//+fncsz;
+	write(1,func_name,fnsz+1);
+	write(1,"\n",1);
+	func_loc=strstr(data,func_name)+fnsz+fncsz+2;
+
+	//TODO:Change to print line by line for clarity's sake
 
 	//find function body
-	body_loc=strchr(strchr(data+i,'\n')+1,'\n')+1;
-	do{
-		body_size=strstr(body_loc,".cfi")-body_loc-1;
-		write(1,body_loc,body_size);
-		body_loc=strchr(body_loc+1,'\n')+1;
-	}while(!strcmp(body_loc+body_size,".cfi_endproc"));
+	body_loc=strchr(strstr(func_loc,"\t.cfi_startproc")+1,'\n')+1;
+	char *body_end=strstr(func_loc,"\t.cfi_endproc");
+	for(char *i=body_loc;i<body_end;i++){
+		if (strncmp(i,"\t.cfi",5))
+			write(1,i,1+strchr(i,'\n')-i);
+		i=strchr(i,'\n');
+	}
 
 	//get name mask from name size
 	return 0;
